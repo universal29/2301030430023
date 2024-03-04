@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shared Recipes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Shared Recipes</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="recipes.html">Shared Recipes</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="recipes">
+        <div class="recipe">
+            <img src="home-page.jpg" alt="Recipe 1">
+            <h2>Recipe Title 1</h2>
+            <p>Description of the recipe. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+        <div class="recipe">
+            <h2>Recipe Title 2</h2>
+            <p>Description of another recipe. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+        <!-- Add more recipe elements as needed -->
+    </section>
+    <button id="addRecipeBtn">Add More Recipes</button>
+    <footer>
+        <p>&copy; 2024 Cookbook. All rights reserved.</p>
+    </footer>
+    <!-- JavaScript code -->
+    <script>
+        // Function to store data in localStorage
+        function storeData(key, data) {
+            localStorage.setItem(key, JSON.stringify(data));
+        }
+
+        // Function to retrieve data from localStorage
+        function getData(key) {
+            const data = localStorage.getItem(key);
+            return data ? JSON.parse(data) : null;
+        }
+
+        // Example data for existing recipes
+        const existingRecipes = [
+            { title: "Recipe Title 1", description: "Description of the recipe 1" },
+            { title: "Recipe Title 2", description: "Description of the recipe 2" }
+        ];
+
+        // Store existing recipes in localStorage
+        storeData('recipes', existingRecipes);
+
+        // Function to handle adding more recipes
+        function addMoreRecipes() {
+            // Prompt user for new recipe details
+            const title = prompt("Enter recipe title:");
+            const description = prompt("Enter recipe description:");
+
+            // Create new recipe object
+            const newRecipe = { title, description };
+
+            // Retrieve existing recipes from localStorage
+            const storedRecipes = getData('recipes') || [];
+
+            // Add new recipe to existing recipes
+            storedRecipes.push(newRecipe);
+
+            // Store updated recipes in localStorage
+            storeData('recipes', storedRecipes);
+
+            // Reload the page to display updated recipes
+            location.reload();
+        }
+
+        // Add event listener to "Add More Recipes" button
+        document.getElementById('addRecipeBtn').addEventListener('click', addMoreRecipes);
+        
+    </script>
+</body>
+</html>

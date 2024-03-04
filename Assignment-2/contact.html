@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Contact Us</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="recipes.html">Shared Recipes</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="contact">
+        <div class="contact-form">
+            <h2>Send us a Message</h2>
+            <form action="#" method="post">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Cookbook. All rights reserved.</p>
+    </footer>
+     <!-- JavaScript code -->
+     <script>
+        // Function to store data in localStorage
+        function storeData(key, data) {
+            localStorage.setItem(key, JSON.stringify(data));
+        }
+
+        // Function to retrieve data from localStorage
+        function getData(key) {
+            const data = localStorage.getItem(key);
+            return data ? JSON.parse(data) : null;
+        }
+
+        // Example data for contact messages
+        const contactMessages = [
+            { name: "John Doe", email: "john@example.com", message: "This is a test message" },
+            { name: "Jane Smith", email: "jane@example.com", message: "Another test message" }
+        ];
+
+        // Store contact messages in localStorage
+        storeData('contactMessages', contactMessages);
+
+        // Retrieve contact messages from localStorage
+        const storedContactMessages = getData('contactMessages');
+
+        console.log("Stored Contact Messages:", storedContactMessages);
+    </script>
+</body>
+</html>
